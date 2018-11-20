@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icon/OperationIcon">
+        <file>pictures/修改.png</file>
+        <file>pictures/添加.png</file>
+        <file>pictures/删除.png</file>
+    </qresource>
+</RCC>
