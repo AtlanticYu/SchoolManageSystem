@@ -30,7 +30,7 @@ private:
     QString NeedModifyFacultyId;
 
 signals:
-    void SendRefleshFacultyTable();
+    void SendNeedModifyFacultyToThread(QString,QString);
 };
 
 #endif // MODIFYFACULTYDIALOG_H

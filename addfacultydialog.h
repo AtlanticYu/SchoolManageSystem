@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <sqlite3.h>
+#include <QMessageBox>
 
 namespace Ui {
 class AddFacultyDialog;

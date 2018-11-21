@@ -30,14 +30,16 @@ SOURCES += \
     addcollegedialog.cpp \
     modifycollegedialog.cpp \
     addfacultydialog.cpp \
-    modifyfacultydialog.cpp
+    modifyfacultydialog.cpp \
+    qworkspace.cpp
 
 HEADERS += \
         mainwindow.h \
     addcollegedialog.h \
     modifycollegedialog.h \
     addfacultydialog.h \
-    modifyfacultydialog.h
+    modifyfacultydialog.h \
+    qworkspace.h
 
 FORMS += \
         mainwindow.ui \

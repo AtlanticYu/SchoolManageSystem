@@ -75,7 +75,19 @@ void AddFacultyDialog::on_BtnCancel_clicked()
 //发送给主窗体以便于刷新表格
 void AddFacultyDialog::on_BtnComfirmAdd_clicked()
 {
-    emit SendAddFaculty(ui->EdtFacultyName->text(),ui->EdtCollegeId->text(),ui->CbxCollegeName->currentText());
+    QString faculty_name = ui->EdtFacultyName->text();
+    QString college_id = ui->EdtCollegeId->text();
+    QString college_name = ui->CbxCollegeName->currentText();
+    if(faculty_name == NULL || college_id == NULL || college_name == NULL)
+    {
+        QMessageBox::information(this,"错误","没有正确输入相应信息");
+        return;
+    }
+    else
+    {
+        emit SendAddFaculty(faculty_name,college_id,college_name);
+    }
+
 }
 
 

@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <qdebug.h>
 #include <QMessageBox>
+#include <qworkspace.h>
 
 namespace Ui {
 class MainWindow;
@@ -25,23 +26,13 @@ public:
 protected:
     void showEvent (QShowEvent * event);
     void ShowAllInformation();
-    void ShowSelectedFaculty();
 
 private slots:
     void on_BtnAddCollege_clicked();
 
-    void ReceiveAddCollege(QString);
-
-    void ReceiveAddFaculty(QString,QString,QString);
-
-
     void on_BtnDeleteCollege_clicked();
 
     void on_BtnModifyCollege_clicked();
-
-    void ReceivedRefleshCollege();
-
-    void ReceivedRefleshFaculty();
 
     void on_BtnSearchCollege_clicked();
 
@@ -51,17 +42,29 @@ private slots:
 
     void on_BtnModifyFaculty_clicked();
 
+    //thread
+    void GetAllCollegePstmt(sqlite3_stmt*);
+    void GetSelectedFaculty(sqlite3_stmt*);
+    void ShowSelectedFaculty();
+
 private:
     Ui::MainWindow *ui;
     AddCollegeDialog *AddCollegeDlg;
     ModifyCollegeDialog *ModifyCollegeDlg;
     AddFacultyDialog *AddFacultyDlg;
     ModifyFacultyDialog *ModityFacultyDlg;
+    QWorkSpace *workSpace;
+    QThread *thread;
 
 
 signals:
     void SendClickedCollege(QString,QString);
     void SendClickedFaculty(QString,QString,QString,QString);
+    //thread
+    void NeedAllCollegePstmt();
+    void SendSelectedFacultyId(QString);
+    void SendWillDeleteCollegeId(QString);
+    void SendWillDeleteFacultyId(QString);
 };
 
 #endif // MAINWINDOW_H

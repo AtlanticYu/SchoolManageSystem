@@ -28,6 +28,7 @@ private:
 
 signals:
     void SendRefleshCollegeTable();
+    void SendNeedModifyCollegeToThread(QString,QString);
 };
 
 #endif // MODIFYCOLLEGEDIALOG_H
