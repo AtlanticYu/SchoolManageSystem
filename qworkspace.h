@@ -4,6 +4,7 @@
 #include <QThread>
 #include <sqlite3.h>
 #include <QDebug>
+#include <QMutex>
 
 
 class QWorkSpace : public QThread
@@ -16,6 +17,8 @@ signals:
     void EmitAllCollegepStmt(sqlite3_stmt*);
     void EmitSelectedFauclty(sqlite3_stmt*);
     void EmitRefleshFaculty();
+    void EmitAllFacultyForCbx(sqlite3_stmt*);
+    void EmitMatchedFacultyId(sqlite3_stmt*);
 
 public slots:
     void SearchAllCollege();
@@ -26,6 +29,11 @@ public slots:
     void AddFaculty(QString,QString,QString);
     void DeleteFacultyById(QString);
     void ModifyFaculty(QString,QString);
+    void InitFacultyForCbx();
+    void SearchMatchFacultyForId(QString);
+
+private:
+    QMutex mutex;
 };
 
 #endif // QWORKSPACE_H

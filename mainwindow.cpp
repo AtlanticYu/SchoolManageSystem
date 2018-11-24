@@ -43,7 +43,7 @@ void MainWindow::showEvent (QShowEvent * event)
 //刷新学院
 void MainWindow::ShowAllInformation()
 {
-    NeedAllCollegePstmt();
+    emit NeedAllCollegePstmt();
 }
 //添加按钮点击时绑定相应的槽和函数
 void MainWindow::on_BtnAddCollege_clicked()
@@ -111,6 +111,10 @@ void MainWindow::on_BtnAddFaculty_clicked()
         AddFacultyDlg = new AddFacultyDialog(this);
         AddFacultyDlg->setModal(false);
         connect(AddFacultyDlg,SIGNAL(SendAddFaculty(QString,QString,QString)),workSpace,SLOT(AddFaculty(QString,QString,QString)));
+        connect(AddFacultyDlg,SIGNAL(EmitInitFacultyForCbx()),workSpace,SLOT(InitFacultyForCbx()));
+        connect(workSpace,SIGNAL(EmitAllFacultyForCbx(sqlite3_stmt*)),AddFacultyDlg,SLOT(GetAllFacultyFromThread(sqlite3_stmt*)));
+        connect(AddFacultyDlg,SIGNAL(EmitNeedMatchFacultyId(QString)),workSpace,SLOT(SearchMatchFacultyForId(QString)));
+        connect(workSpace,SIGNAL(EmitMatchedFacultyId(sqlite3_stmt*)),AddFacultyDlg,SLOT(GetMatchFacultyIdFromThread(sqlite3_stmt*)));
     }
     AddFacultyDlg->show();
 }
